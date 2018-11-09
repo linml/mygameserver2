@@ -1,0 +1,22 @@
+debug: true
+service:
+  port: 8080
+maria:
+  write: root:root@tcp(127.0.0.1:3306)/test1?parseTime=true
+  read: root:root@tcp(127.0.0.1:3306)/test1?parseTime=true
+redis:
+  addr: ':6379'
+  db: 0
+acc_service:
+  host: "https://user.mmifan.com"
+  port: 80
+  client_id: "5B83B6B850AE4"
+  secret_key: "D64DEF201FD03EAFBEAAA8C878DD7C72"
+lottery_center:
+  host: "http://lot-center.gztdyy.net"
+  port: 80
+grpc:
+  api_service:
+    host: localhost:50052
+  honghuoniu:
+    host: localhost:50051

@@ -1,0 +1,49 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script>
+        $(function () {
+
+
+            url = 'ws://localhost:8080/ws?token=456&gameType=pk10';
+            c = new WebSocket(url);
+
+            send = function (data) {
+                $("#output").append((new Date()) + "request: " + data + "\n")
+                c.send(data)
+            }
+
+            c.onmessage = function (msg) {
+                $("#output").append((new Date()) + "response: " + msg.data + "\n")
+                console.log(msg)
+            }
+
+            c.onopen = function () {
+                send(JSON.stringify({"action": "echo"}))
+                setInterval(
+                        function () {
+
+                            // send(JSON.stringify({"action": "echo"}))
+                        }
+                        , 1000)
+            }
+
+            $("#bet").click(function () {
+                send(JSON.stringify({"action": "bet"}))
+            });
+        });
+    </script>
+</head>
+
+<body>
+<h3>WebSocket Go</h3>
+<p>
+    <input type="button" value="bet" id="bet" />
+</p>
+<pre id="output"></pre>
+
+
+
+
+</body>
+</html>
